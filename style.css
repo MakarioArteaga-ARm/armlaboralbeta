@@ -1131,3 +1131,124 @@ footer a:active {
     outline: none;
     box-shadow: none;
 }
+/* Nuevo estilo para la sección de tokens en el home */
+.packages {
+    padding: 60px 0;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.paquete {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+    text-align: center;
+    border-top: 4px solid #0E4D92;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 400px;
+}
+
+.paquete:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.paquete::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0E4D92, #25D366);
+}
+
+.paquete-header {
+    margin-bottom: 1.5rem;
+}
+
+.icono {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin-bottom: 1rem;
+}
+
+.icono img {
+    width: 80px;
+    height: auto;
+    max-height: 80px;
+}
+
+.paquete-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #0E4D92;
+    margin-bottom: 0.5rem;
+}
+
+.paquete-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    flex-grow: 1;
+}
+
+.paquete-features li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+    color: #555;
+    font-size: 1rem;
+}
+
+.paquete-features li:last-child {
+    border-bottom: none;
+}
+
+.paquete-features li::before {
+    content: '✓';
+    color: #25D366;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.acciones {
+    margin-top: 1.5rem;
+}
+
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #0E4D92, #1a5ba8);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.5s ease-in-out;
+    box-shadow: 0 4px 15px rgba(14, 77, 146, 0.3);
+    border: none;
+    cursor: pointer;
+}
+.cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(14, 77, 146, 0.4);
+}
