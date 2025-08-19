@@ -235,7 +235,6 @@ header.scrolled .logo-dark {
         inset 0px 1px 2px rgba(255, 255, 255, 0.3);
 }
 
-/* CAMBIO: Estilo Glassmorphism unificado para todos los elementos tipo tarjeta */
 .hero-card, .card, .cta-band, .val {
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(12px);
@@ -284,7 +283,7 @@ section {
 }
 
 .cta-band {
-    padding: 40px 0; /* Añadido padding para que no se vea tan apretado */
+    padding: 40px;
 }
 
 .cta-final-bg {
@@ -397,27 +396,25 @@ section {
 }
 
 /* Footer */
-.footer-curve-wrapper {
+footer {
+    background-color: var(--card);
+    color: var(--ink);
     position: relative;
-    background-color: transparent;
+    padding-top: 120px;
+    margin-top: -1px;
 }
-.footer-curve {
+
+footer::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: auto;
-    transform: translateY(-99%);
-}
-.footer-curve path {
-    fill: var(--card);
-}
-
-footer {
+    height: 120px;
     background-color: var(--card);
-    color: var(--ink);
-    padding-top: 80px;
-    position: relative;
+    /* CAMBIO: Se invirtió la curva para que sea cóncava */
+    clip-path: path('M0,0 C480,120 960,120 1440,0 Z');
+    transform: translateY(-99%);
 }
 
 .foot {
@@ -430,7 +427,6 @@ footer {
 footer .brand .logo-white { opacity: 0; }
 footer .brand .logo-dark { opacity: 1; }
 footer .brand, footer .brand a { color: var(--ink); }
-
 
 .foot a {
     color: var(--ink);
