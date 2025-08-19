@@ -1,18 +1,17 @@
 :root {
-  --primary: #0E4D92;  /* Azul de la marca */
-  --primary-dark: #0D47A1; /* Azul oscuro corporativo (de la presentación) */
-  --primary-dynamic: #1976D2; /* Azul medio dinámico (de la presentación) */
-  --celeste-vibrante: #64B5F6; /* Celeste vibrante de la presentación */
-  --ink: #333333;     /* Gris oscuro para el texto */
-  --muted: #6C757D;   /* Gris medio para subtítulos */
-  --bg: #F8F9FA;      /* Fondo de sección suave */
-  --card: #FFFFFF;    /* Fondo de tarjetas */
-  --ring: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra suave para los elementos */
-  --ring-hover: 0 10px 25px rgba(0, 0, 0, 0.15); /* Sombra más fuerte en hover */
+  --primary-dark: #0D47A1;
+  --primary-dynamic: #1976D2;
+  --celeste-vibrante: #64B5F6;
+  --ink: #333333;
+  --muted: #6C757D;
+  --card: #FFFFFF;
+  --bg-light: #F8F9FA;
+  --ring: 0 4px 15px rgba(0, 0, 0, 0.08);
+  --ring-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
   --radius: 12px;
 }
 
-/* Base and Reset */
+/* Base y reset */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -29,6 +28,19 @@ body {
     line-height: 1.7;
     color: var(--ink);
     background-color: var(--card);
+    background-image: linear-gradient(135deg, var(--primary-dark) 0%, var(--card) 100%);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
+  opacity: 0.2;
+  z-index: -1;
 }
 
 .container {
@@ -49,149 +61,76 @@ h3 { font-size: clamp(1.4rem, 3vw, 1.8rem); }
 
 /* Header */
 header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
-    background: var(--primary);
-    border-bottom: 1px solid #E6EAF2;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease;
+    background-color: transparent;
+}
+
+header.scrolled {
+  background-color: var(--primary-dark);
 }
 
 .nav {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     padding: 16px 0;
 }
 
 .brand {
     display: flex;
-    gap: 10px;
     align-items: center;
-    font-weight: 800;
-    letter-spacing: 0.2px;
-    color: var(--card);
+    gap: 10px;
     text-decoration: none;
-    transition: color 0.3s ease;
+    color: var(--card);
+    font-weight: 800;
+    font-size: 1.5rem;
 }
 
 .brand img {
-    height: 40px;
-    width: auto;
     filter: brightness(0) invert(1);
+    height: 40px;
 }
 
 .main-menu ul {
     display: flex;
     list-style: none;
     gap: 22px;
-    margin: 0;
-    padding: 0;
 }
 
 .main-menu a {
+    color: white;
     text-decoration: none;
-    color: var(--card);
     font-weight: 600;
     transition: color 0.3s ease;
-    padding: 8px 0;
 }
 
-.main-menu a:hover,
-.main-menu a:focus {
-    color: var(--accent);
-    outline: none;
-}
-
-.menu-toggle {
-    display: none;
-    cursor: pointer;
-}
-
-.hamburger span {
-    display: block;
-    width: 26px;
-    height: 2px;
-    background: var(--card);
-    margin: 6px 0;
-    transition: all 0.3s ease-in-out;
+.main-menu a:hover {
+    color: var(--celeste-vibrante);
 }
 
 /* Hero Section */
 .hero {
     position: relative;
     overflow: hidden;
-    padding: 90px 0;
-    background-size: cover;
-    background-position: center;
-    color: white;
-}
-
-/* Hero de la página principal actualizado con la nueva dirección creativa, usando la imagen de fondo */
-.hero.hero-index {
-    background: linear-gradient(135deg, rgba(13, 71, 161, 0.7) 0%, rgba(255, 255, 255, 0.7) 100%), url('index-page.jpeg') center center / cover;
-    position: relative;
+    padding: 100px 0 150px;
+    background: transparent;
     color: var(--ink);
 }
-
-/* Pseudo-elemento para el punto de luz */
-.hero.hero-index::before {
-    content: '';
-    position: absolute;
-    top: -50px;
-    right: -50px;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%);
-    z-index: 1;
-}
-
-/* Se agregan las líneas de la nueva identidad visual */
-.hero.hero-index::after {
-    content: '';
-    position: absolute;
-    bottom: -150px;
-    left: 0;
-    width: 150%;
-    height: 300px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><path d="M0,10 C25,0 75,20 100,10 V20 H0 Z" fill="%2364B5F6" opacity="0.1" /></svg>');
-    background-repeat: repeat-x;
-    animation: wave 10s linear infinite;
-    z-index: 0;
-}
-
-@keyframes wave {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-
-/* Se actualizan los héroes para que usen el degradado simple, sin imágenes de fondo */
-.hero.min {
-    padding: 60px 0;
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-dynamic) 100%);
-    color: var(--card);
-}
-.hero.min h1, .hero.min p.lead {
-    color: var(--card);
-}
-.hero.min.hero-aviso {
-  background: var(--primary-dark);
-}
-
-.hero h1, .hero p.lead {
-    color: var(--ink);
-}
-
 .hero-inner {
+    position: relative;
+    z-index: 2;
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: 40px;
     align-items: center;
+}
+.hero .line-svg {
+  display: none; /* Eliminar la onda del Hero */
 }
 
 .kicker {
@@ -204,59 +143,25 @@ header {
     border-radius: 999px;
     font-size: 14px;
     margin-bottom: 10px;
-    font-family: 'Montserrat', sans-serif;
 }
 
-/* Nuevo efecto para textos con glassmorphism */
 .glass-text {
-  font-family: 'Montserrat', sans-serif;
-  color: rgba(255, 255, 255, 0.55);
-  text-shadow:
-    0px 2px 4px rgba(0,0,0,0.25),
-    inset 0px 1px 2px rgba(255,255,255,0.3);
+    color: rgba(255, 255, 255, 0.55);
+    text-shadow:
+        0px 2px 4px rgba(0, 0, 0, 0.25),
+        inset 0px 1px 2px rgba(255, 255, 255, 0.3);
 }
 
-.hero h1 {
-    font-size: clamp(3rem, 7vw, 4.2rem);
-    line-height: 1.05;
-    margin-bottom: 16px;
-}
-.hero p.lead {
-    font-size: 1.25rem;
-    color: var(--muted);
-    max-width: 55ch;
-    margin-bottom: 24px;
-    font-family: 'Montserrat', sans-serif;
-}
-.hero.min p.lead {
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.actions {
-    margin-top: 20px;
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-/* Efecto de Glassmorphism */
-.glass-effect {
+.hero-card {
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(12px);
     border: 2px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 
-      0px 4px 12px rgba(0,0,0,0.2),
-      inset 0px 2px 6px rgba(255,255,255,0.3);
+    box-shadow:
+        0px 4px 12px rgba(0, 0, 0, 0.2),
+        inset 0px 2px 6px rgba(255, 255, 255, 0.3);
     border-radius: var(--radius);
     padding: 30px;
     transition: transform 0.3s ease;
-    font-family: 'Montserrat', sans-serif;
-    position: relative;
-    z-index: 2;
-}
-.glass-effect:hover {
-    transform: translateY(-3px);
-    box-shadow: 0px 10px 25px rgba(0,0,0,0.3), inset 0px 2px 6px rgba(255,255,255,0.3);
 }
 
 .hero-list {
@@ -270,26 +175,61 @@ header {
     margin: 12px 0;
     padding-left: 20px;
     position: relative;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .hero-list li::before {
     content: '✓';
-    color: var(--accent);
+    color: var(--celeste-vibrante);
     font-weight: bold;
     position: absolute;
     left: 0;
 }
 
-hr {
-    border: none;
-    border-top: 1px solid #E6EAF2;
-    margin: 20px 0;
+/* Secciones del cuerpo de la página */
+main {
+  position: relative;
+  z-index: 1;
+  background: transparent;
 }
 
-/* Sections */
+main::before {
+    display: none; /* Eliminar la onda del Body */
+}
+
 section {
     padding: 60px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-band {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+}
+
+.cta-final-bg {
+    background: transparent;
+    color: var(--ink);
+}
+.cta-final-bg .title-accent {
+  color: var(--primary-dark);
+  text-shadow: none;
+}
+.cta-final-bg .sub {
+  color: var(--muted);
+}
+.cta-final-bg .actions .btn {
+  background-color: var(--card);
+  color: var(--primary-dark);
+  border: 1px solid var(--primary-dark);
+}
+.cta-final-bg .actions .btn.ghost {
+  background-color: transparent;
+  color: var(--primary-dark);
+  border-color: var(--primary-dark);
 }
 
 .section-head {
@@ -307,7 +247,6 @@ section {
     color: var(--muted);
     font-size: 15px;
     max-width: 60ch;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .center .sub {
@@ -321,17 +260,16 @@ section {
     gap: 24px;
 }
 
-/* Nuevo estilo para tarjetas, aplicando el glassmorphism */
 .card {
-    background: transparent; /* Fondo transparente para el efecto glassmorphism */
-    border: none; /* Elimina el borde de la tarjeta */
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    box-shadow:
+        0px 4px 12px rgba(0, 0, 0, 0.2),
+        inset 0px 2px 6px rgba(255, 255, 255, 0.3);
     border-radius: var(--radius);
     padding: 24px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: none; /* Elimina la sombra por defecto */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    font-family: 'Montserrat', sans-serif;
 }
 .card .actions {
     margin-top: 16px;
@@ -345,13 +283,18 @@ section {
 
 .pill {
     display: inline-block;
-    border: 1px solid #E6EAF2;
+    border: 1px solid var(--primary-dark);
     padding: 8px 16px;
     border-radius: 999px;
-    color: var(--muted);
+    color: var(--primary-dark);
     margin: 4px 6px 0 0;
-    background-color: var(--bg);
-    font-family: 'Montserrat', sans-serif;
+    background-color: var(--card);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.pill:hover {
+    background-color: var(--primary-dark);
+    color: var(--card);
 }
 
 .vals {
@@ -361,7 +304,6 @@ section {
     margin-top: 16px;
 }
 
-/* Nuevo estilo para los valores, aplicando glassmorphism */
 .val {
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(12px);
@@ -369,49 +311,51 @@ section {
     border-radius: var(--radius);
     padding: 16px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    font-family: 'Montserrat', sans-serif;
     box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
-}
-
-.val:hover {
-    transform: translateY(-3px);
-    box-shadow: 0px 10px 25px rgba(0,0,0,0.3);
 }
 
 .val strong {
     display: block;
     margin-bottom: 6px;
-    color: var(--primary-dynamic); /* Usando el nuevo azul dinámico */
-    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-dynamic);
     font-weight: 700;
 }
 
 .val .sub {
     font-size: 14px;
-    font-family: 'Montserrat', sans-serif;
-}
-footer p.sub {
-    color: var(--card);
 }
 
-/* Cta band con los nuevos colores */
-.cta-band {
-    background: linear-gradient(120deg, rgba(13, 71, 161, 0.08), rgba(25, 118, 210, 0.04));
-    border-top: 1px solid rgba(13, 71, 161, 0.1);
-    border-bottom: 1px solid rgba(13, 71, 161, 0.1);
+footer {
+    background-color: transparent;
+    color: var(--ink);
+    margin-top: 0;
 }
 
-.center {
-    text-align: center;
+.foot {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 24px;
+    padding: 30px 0;
+    align-items: center;
 }
 
-.center h2, .center p.sub {
-  text-align: center;
+.foot a {
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
-.center .actions {
-  justify-content: center;
+
+.foot a:hover {
+    color: var(--celeste-vibrante);
 }
-/* Estilo para titulos que no estan en el hero, usan el azul corporativo */
+
+.credits {
+    border-top: 1px solid rgba(230, 234, 242, 0.2);
+    padding: 16px 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
 .title-accent {
   color: var(--primary-dark);
   text-shadow:
@@ -427,7 +371,6 @@ footer p.sub {
     font-weight: 700;
     transition: all 0.3s ease;
     border: 1px solid transparent;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .btn.primary {
@@ -458,54 +401,15 @@ footer p.sub {
     color: var(--card);
 }
 
-/* Footer */
-footer {
-    background: var(--primary-dark);
-    color: var(--card);
-    margin-top: 40px;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.foot {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 24px;
-    padding: 30px 0;
-    align-items: center;
-}
-
-.foot a {
-    color: var(--card);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.foot a:hover {
-    color: var(--celeste-vibrante);
-}
-
-.credits {
-    border-top: 1px solid rgba(230, 234, 242, 0.2);
-    padding: 16px 0;
-    color: #9CA3AF;
-    font-size: 14px;
-}
-
-/* Specific Classes */
-.hero.min {
-    padding: 60px 0;
-}
-
 .tiles {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
 }
 .tile h4 {
-    font-family: 'Montserrat', sans-serif;
     font-size: 1.2rem;
     font-weight: 600;
-    color: var(--primary-dynamic); /* Usando el nuevo azul dinámico */
+    color: var(--primary-dynamic);
     margin: 0 0 8px;
 }
 .tile {
@@ -516,8 +420,8 @@ footer {
     padding: 20px;
     box-shadow: var(--ring);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    font-family: 'Montserrat', sans-serif;
 }
+
 .tile:hover {
     transform: translateY(-3px);
     box-shadow: var(--ring-hover);
@@ -531,7 +435,6 @@ footer {
     box-shadow: var(--ring);
     max-width: 720px;
     margin: 0 auto;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .input {
@@ -545,8 +448,8 @@ footer {
 }
 
 .input:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(1, 76, 137, 0.12);
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.12);
 }
 
 .label {
@@ -571,7 +474,7 @@ textarea.input {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: var(--accent);
+    background: var(--celeste-vibrante);
     color: white;
     width: 56px;
     height: 56px;
@@ -586,43 +489,23 @@ textarea.input {
     animation: pulse 2s infinite;
 }
 
-.float-contacto:hover {
-    transform: scale(1.1);
-    box-shadow: var(--ring-hover);
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(100, 181, 246, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(100, 181, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(100, 181, 246, 0); }
 }
 
-.float-contacto svg {
-    fill: white;
-    width: 28px;
-    height: 28px;
-}
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-    }
-    70% {
-        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-    }
-}
+/* Responsive */
 @media (max-width: 900px) {
-    h1 { font-size: clamp(2rem, 6vw, 2.8rem); }
-    h2 { font-size: clamp(1.5rem, 4vw, 2.2rem); }
     .hero-inner, .grid-2, .solutions-grid, .vals, .tiles, .foot, .row {
         grid-template-columns: 1fr;
-    }
-    .hero-list {
-        margin-bottom: 20px;
     }
     .main-menu ul {
         display: none;
         position: absolute;
         right: 10px;
         top: 65px;
-        background: var(--primary);
-        border: 1px solid #E6EAF2;
+        background: var(--primary-dark);
         border-radius: var(--radius);
         padding: 12px 18px;
         box-shadow: var(--ring);
@@ -630,42 +513,4 @@ textarea.input {
         gap: 10px;
         min-width: 200px;
     }
-    .main-menu ul.show {
-        display: flex;
-    }
-    .main-menu ul a {
-      color: var(--card);
-    }
-    .menu-toggle {
-        display: block;
-        z-index: 1001;
-    }
-    .brand {
-        color: var(--card);
-    }
-    .hero h1 {
-        font-size: clamp(2.5rem, 8vw, 3.2rem);
-    }
-    .hero p.lead {
-        font-size: 1.1rem;
-    }
-    .section-head {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    .center .actions {
-        justify-content: center;
-    }
-}
-/* --- Estilos para Animación de Scroll --- */
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.animate-on-scroll.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
