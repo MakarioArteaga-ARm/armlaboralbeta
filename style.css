@@ -397,8 +397,8 @@ section {
 
 /* Footer */
 footer {
-    background-color: var(--card);
-    color: var(--ink);
+    background-color: transparent; /* CAMBIO: Fondo transparente */
+    color: rgba(255, 255, 255, 0.8); /* CAMBIO: Color de texto claro */
     position: relative;
 }
 
@@ -409,12 +409,14 @@ footer {
     padding: 30px 0;
     align-items: center;
 }
-footer .brand .logo-white { opacity: 0; }
-footer .brand .logo-dark { opacity: 1; }
-footer .brand, footer .brand a { color: var(--ink); }
+/* CAMBIO: Lógica de logo invertida para fondo oscuro */
+footer .brand .logo-white { opacity: 1; }
+footer .brand .logo-dark { opacity: 0; }
+/* CAMBIO: Color de texto de la marca a blanco */
+footer .brand { color: var(--card); }
 
 .foot a {
-    color: var(--ink);
+    color: var(--card); /* CAMBIO: Color de enlaces a blanco */
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -424,9 +426,10 @@ footer .brand, footer .brand a { color: var(--ink); }
 }
 
 .credits {
-    border-top: 1px solid rgba(51, 51, 51, 0.1);
+    /* CAMBIO: Borde y color de texto claros */
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
     padding: 16px 0;
-    color: var(--muted);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 14px;
 }
 
