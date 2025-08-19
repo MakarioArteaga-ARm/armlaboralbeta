@@ -10,6 +10,8 @@
   --ring: 0 4px 15px rgba(0, 0, 0, 0.08);
   --ring-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
   --radius: 12px;
+  /* CAMBIO: Duración de transición para suavizar efectos */
+  --transition-speed: 0.5s;
 }
 
 /* Base y reset */
@@ -66,11 +68,10 @@ header {
     left: 0;
     width: 100%;
     z-index: 1000;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
     background-color: transparent;
 }
 
-/* CAMBIO: Estilo Glassmorphism aplicado al header con scroll */
 header.scrolled {
   background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(12px);
@@ -84,9 +85,32 @@ header.scrolled .menu-toggle {
     color: var(--primary-dark);
 }
 
-header.scrolled .brand img {
-    filter: none;
+/* CAMBIO: Estilos para el contenedor de logos y la transición */
+.logo-container {
+    position: relative;
+    width: 40px; /* Ajustar al tamaño del logo */
+    height: 40px;
 }
+.logo-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 40px;
+    transition: opacity var(--transition-speed) ease-in-out;
+}
+.logo-white {
+    opacity: 1;
+}
+.logo-dark {
+    opacity: 0;
+}
+header.scrolled .logo-white {
+    opacity: 0;
+}
+header.scrolled .logo-dark {
+    opacity: 1;
+}
+
 
 .nav {
     display: flex;
@@ -104,13 +128,7 @@ header.scrolled .brand img {
     font-weight: 800;
     font-size: 1.5rem;
     z-index: 10;
-    transition: color 0.3s ease;
-}
-
-.brand img {
-    filter: brightness(0) invert(1);
-    height: 40px;
-    transition: filter 0.3s ease;
+    transition: color var(--transition-speed) ease-in-out;
 }
 
 .main-menu ul {
@@ -123,7 +141,7 @@ header.scrolled .brand img {
     color: white;
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s ease;
+    transition: color var(--transition-speed) ease-in-out;
     padding: 8px 0;
     position: relative;
 }
@@ -155,7 +173,7 @@ header.scrolled .brand img {
     cursor: pointer;
     padding: 8px;
     z-index: 1001;
-    transition: color 0.3s ease;
+    transition: color var(--transition-speed) ease-in-out;
 }
 .menu-toggle svg {
     width: 28px;
@@ -179,7 +197,6 @@ header.scrolled .brand img {
     align-items: center;
 }
 
-/* CAMBIO: Estilos para la curva SVG y su animación */
 .hero-curve {
     position: absolute;
     bottom: -1px;
@@ -399,10 +416,28 @@ section {
 }
 
 /* Footer */
-footer {
+/* CAMBIO: Estilos para la curva del footer */
+.footer-curve-wrapper {
+    position: relative;
     background-color: transparent;
+}
+.footer-curve {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transform: translateY(-99%); /* Alinear con el top del footer */
+}
+.footer-curve path {
+    fill: var(--card); /* Rellenar para que se vea sólido */
+}
+
+footer {
+    background-color: var(--card); /* Fondo sólido para el footer */
     color: var(--ink);
-    margin-top: 0;
+    padding-top: 80px; /* Espacio para la curva */
+    position: relative;
 }
 
 .foot {
@@ -412,6 +447,11 @@ footer {
     padding: 30px 0;
     align-items: center;
 }
+/* Estilos para que el logo del footer también cambie */
+footer .brand .logo-white { opacity: 0; }
+footer .brand .logo-dark { opacity: 1; }
+footer .brand, footer .brand a { color: var(--ink); }
+
 
 .foot a {
     color: var(--ink);
