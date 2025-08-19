@@ -127,12 +127,14 @@ header {
     color: white;
 }
 
-/* Hero de la página principal actualizado con el nuevo diseño */
+/* Hero de la página principal actualizado con la nueva dirección creativa, usando la imagen de fondo */
 .hero.hero-index {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--card) 100%);
+    background: linear-gradient(135deg, rgba(13, 71, 161, 0.7) 0%, rgba(255, 255, 255, 0.7) 100%), url('index-page.jpeg') center center / cover;
     position: relative;
     color: var(--ink);
 }
+
+/* Pseudo-elemento para el punto de luz */
 .hero.hero-index::before {
     content: '';
     position: absolute;
@@ -143,6 +145,30 @@ header {
     background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%);
     z-index: 1;
 }
+
+/* Se agregan las líneas de la nueva identidad visual */
+.hero.hero-index::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: 0;
+    width: 150%;
+    height: 300px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><path d="M0,10 C25,0 75,20 100,10 V20 H0 Z" fill="%2364B5F6" opacity="0.1" /></svg>');
+    background-repeat: repeat-x;
+    animation: wave 10s linear infinite;
+    z-index: 0;
+}
+
+@keyframes wave {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
 
 /* Se actualizan los héroes para que usen el degradado simple, sin imágenes de fondo */
 .hero.min {
@@ -388,6 +414,9 @@ footer p.sub {
 /* Estilo para titulos que no estan en el hero, usan el azul corporativo */
 .title-accent {
   color: var(--primary-dark);
+  text-shadow:
+    0px 2px 4px rgba(0,0,0,0.25),
+    inset 0px 1px 2px rgba(255,255,255,0.3);
 }
 
 .btn {
