@@ -10,7 +10,6 @@
   --ring: 0 4px 15px rgba(0, 0, 0, 0.08);
   --ring-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
   --radius: 12px;
-  /* CAMBIO: Duración de transición para suavizar efectos */
   --transition-speed: 0.5s;
 }
 
@@ -85,10 +84,9 @@ header.scrolled .menu-toggle {
     color: var(--primary-dark);
 }
 
-/* CAMBIO: Estilos para el contenedor de logos y la transición */
 .logo-container {
     position: relative;
-    width: 40px; /* Ajustar al tamaño del logo */
+    width: 40px;
     height: 40px;
 }
 .logo-container img {
@@ -110,7 +108,6 @@ header.scrolled .logo-white {
 header.scrolled .logo-dark {
     opacity: 1;
 }
-
 
 .nav {
     display: flex;
@@ -238,16 +235,18 @@ header.scrolled .logo-dark {
         inset 0px 1px 2px rgba(255, 255, 255, 0.3);
 }
 
-.hero-card {
+/* CAMBIO: Estilo Glassmorphism unificado para todos los elementos tipo tarjeta */
+.hero-card, .card, .cta-band, .val {
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow:
-        0px 8px 24px rgba(0, 0, 0, 0.1),
-        inset 0px 2px 6px rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.2), inset 0px 2px 6px rgba(255,255,255,0.3);
     border-radius: var(--radius);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-card {
     padding: 30px;
-    transition: transform 0.3s ease;
 }
 
 .hero-list {
@@ -285,11 +284,7 @@ section {
 }
 
 .cta-band {
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(12px);
-    border-top: 1px solid rgba(255, 255, 255, 0.35);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    padding: 40px 0; /* Añadido padding para que no se vea tan apretado */
 }
 
 .cta-final-bg {
@@ -341,21 +336,13 @@ section {
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow:
-        0px 4px 12px rgba(0, 0, 0, 0.1),
-        inset 0px 2px 6px rgba(255, 255, 255, 0.3);
-    border-radius: var(--radius);
     padding: 24px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
 }
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--ring-hover);
+    box-shadow: var(--ring-hover), inset 0px 2px 6px rgba(255,255,255,0.3);
 }
 
 .card .actions {
@@ -395,13 +382,7 @@ section {
 }
 
 .val {
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    border-radius: var(--radius);
     padding: 16px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
 }
 
 .val strong {
@@ -416,7 +397,6 @@ section {
 }
 
 /* Footer */
-/* CAMBIO: Estilos para la curva del footer */
 .footer-curve-wrapper {
     position: relative;
     background-color: transparent;
@@ -427,16 +407,16 @@ section {
     left: 0;
     width: 100%;
     height: auto;
-    transform: translateY(-99%); /* Alinear con el top del footer */
+    transform: translateY(-99%);
 }
 .footer-curve path {
-    fill: var(--card); /* Rellenar para que se vea sólido */
+    fill: var(--card);
 }
 
 footer {
-    background-color: var(--card); /* Fondo sólido para el footer */
+    background-color: var(--card);
     color: var(--ink);
-    padding-top: 80px; /* Espacio para la curva */
+    padding-top: 80px;
     position: relative;
 }
 
@@ -447,7 +427,6 @@ footer {
     padding: 30px 0;
     align-items: center;
 }
-/* Estilos para que el logo del footer también cambie */
 footer .brand .logo-white { opacity: 0; }
 footer .brand .logo-dark { opacity: 1; }
 footer .brand, footer .brand a { color: var(--ink); }
